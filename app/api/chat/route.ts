@@ -62,7 +62,7 @@ export async function POST(req: NextRequest) {
     }
 
     const modelId = isVulnerable
-      ? (model ?? "claude-haiku-4-5-20251001")
+      ? (model ?? "claude-2.0")
       : (model ?? process.env.DEFAULT_MODEL ?? "claude-sonnet-4-6");
     const systemPrompt = isVulnerable ? VULNERABLE_SYSTEM_PROMPT : REMEDIATED_SYSTEM_PROMPT;
 
