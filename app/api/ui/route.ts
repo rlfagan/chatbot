@@ -56,7 +56,7 @@ const attackLog: { timestamp: string; category: string; reason: string }[] = [];
 
 async function classifyMessage(message: string) {
   const response = await client.messages.create({
-    model: "claude-2.0",
+    model: "claude-haiku-4-5-20251001",
     max_tokens: 150,
     messages: [{ role: "user", content: `${CLASSIFIER_PROMPT}\n\nUser message: "${message}"` }],
   });
@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
           : "\n\nSecurity context: No attacks detected this session.");
 
     const response = await client.messages.create({
-      model: isVulnerable ? "claude-2.0" : (process.env.DEFAULT_MODEL ?? "claude-sonnet-4-6"),
+      model: isVulnerable ? "claude-haiku-4-5-20251001" : (process.env.DEFAULT_MODEL ?? "claude-sonnet-4-6"),
       max_tokens: 1024,
       system: systemPrompt,
       messages,
